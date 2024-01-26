@@ -1,0 +1,11 @@
+/* you must make CSS modules in next.js. each component should have its own .module.css */
+
+/* define classes here that are scoped to the component */
+
+/* MUST use camelCase, no hyphens because JS object notation */
+
+/* under the hood, once compiled, postCSS generates unique classnames for each component */
+.card {
+    padding: 1rem;
+    border: 1px solid #ccc;
+}

@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+/* detects when  */
+@media (prefers-color-scheme: dark) { 
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
@@ -16,7 +18,16 @@
   }
 }
 
+/* reserve this whole css file for stylings that are on all pages */
 body {
-  color: black;
-  padding: 1rem;
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-start-rgb));
+}
+
+/* This directive will override styles in the base layer */
+@layer base {
+  /* all h1 elements will now have these styles */
+  h1 {
+    @apply font-extrabold text-2xl mb-3
+  }
 }

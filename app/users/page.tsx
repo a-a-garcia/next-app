@@ -1,22 +1,28 @@
 import React from 'react'
+import UserTable from './UserTable'
+import Link from 'next/link'
+import { Suspense } from 'react'
 
-//In TS, you can use interfaces to define the shape of your user objects.
-interface User {
-    id: number;
-    name: string;
+//when we need to access query string parameters, we have to do that in our page.tsx's and pass data down to our components
+interface Props {
+    searchParams: { sortOrder: string }
 }
 
-const UsersPage = async () => {
-    //no need to useEffect or useState! Just fetch your data and render the returned promises
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
-    //We do ...: User[] to apply the User interface to users. It tells TS that we expect users to be an array of User objects
-    const users: User[] = await res.json();
-
+const UsersPage = async ( {searchParams : { sortOrder}} : Props) => {
+    
   return (
     <div>
         <h1>Users</h1>
-        {/* Note that user is initially of type any. Not good */}
-        {users.map(user => <li key={user.id}>{user.name}</li>)}
+
+        <Link href="/users/new" className='btn'>New User</Link>
+
+        {/* wrap the component you want a loading UI to show*/}
+        <Suspense fallback={<p>Loading...</p>}>
+          {/* below we pass sortOrder as props */}
+          {/* you'll get an error until you go to UserTable component and define props there */}
+          <UserTable sortOrder={sortOrder} /> 
+        </Suspense>
+
     </div>
   )
 }
