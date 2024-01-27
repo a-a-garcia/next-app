@@ -8,7 +8,8 @@ const NewUsersPage = () => {
 
   return (
     <div>
-      <button className='btn btn-primary'
+      <button 
+      className='btn btn-primary'
       onClick={() => router.push('/users')}
       >Create</button>
     </div>

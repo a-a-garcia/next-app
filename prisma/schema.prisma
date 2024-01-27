@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+//generating a prisma client
+generator client {
+  provider = "prisma-client-js"
+}
+
+//for generating a prisma file
+datasource db {
+  //or mongoDb and so on...
+  provider = "mysql"
+  //no need to change this
+  url      = env("DATABASE_URL")
+}
+
+//We define one or more models here for our database!
+
+//use PascalCase for models
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  followers    Int      @default(0)
+  isActive     Boolean  @default(true)
+  registeredAt DateTime @default(now())
+}

@@ -16,7 +16,7 @@ const UsersPage = async ( {searchParams : { sortOrder}} : Props) => {
 
         <Link href="/users/new" className='btn'>New User</Link>
 
-        {/* wrap the component you want a loading UI to show*/}
+        {/* wrap the component you want a loading UI to show - one option */}
         <Suspense fallback={<p>Loading...</p>}>
           {/* below we pass sortOrder as props */}
           {/* you'll get an error until you go to UserTable component and define props there */}
