@@ -13,4 +13,7 @@ const AuthProvider = ( {children} : { children: ReactNode } ) => {
   )
 }
 
+//go to layout.tsx to see how we use this AuthProvider
+//and go to NavBar to see how the useSession hook is used
+
 export default AuthProvider

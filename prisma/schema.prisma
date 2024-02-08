@@ -72,6 +72,8 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  // make hashedPassword optional because if user signs in with a third party provider, we don't have a password
+  hashedPassword String?
   image         String?
   accounts      Account[]
   sessions      Session[]

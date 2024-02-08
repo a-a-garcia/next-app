@@ -7,6 +7,7 @@ import { authOptions } from './api/auth/[...nextauth]/route'
 export default async function Home() {
   // Pass authentication options. this is the object we use when initializing NextAuth
   // returns a promise, so must async await
+  //this is for accessing session on the server
   const session = await getServerSession(authOptions)
   return (
     <main>
