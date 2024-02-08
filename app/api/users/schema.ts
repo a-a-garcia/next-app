@@ -6,6 +6,7 @@ import { z } from 'zod';
 // z.object() returns a schema object so store it in a variable
 const schema = z.object({
     name: z.string().min(3),
+    email: z.string().email()
 })
 
 //export it as a default object;

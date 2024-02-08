@@ -3,6 +3,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import NavBar from './NavBar'
 import { Suspense } from 'react'
+import AuthProvider from './auth/Provider'
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,15 +25,17 @@ return (
     <html lang="en" data-theme="winter">
       <body className={inter.className}>
         {/* it's cleaner to create a separate component for Nav */}
-        <NavBar />
-        {/* more semantic html to wrap children in a <main> tag */}
-        <main className='p-5'>
-          {/* Wrapping children in Suspense here is one way to applying loading UI, other is creating a loading.tsx in /app */}
-          {/* <Suspense fallback={<p>Loading...</p>}> */}
-            {children}
-          {/* </Suspense> */}
-        </main>
-        </body>
+        <AuthProvider>
+          <NavBar />
+          {/* more semantic html to wrap children in a <main> tag */}
+          <main className='p-5'>
+            {/* Wrapping children in Suspense here is one way to applying loading UI, other is creating a loading.tsx in /app */}
+            {/* <Suspense fallback={<p>Loading...</p>}> */}
+              {children}
+            {/* </Suspense> */}
+          </main>
+        </AuthProvider>
+      </body>
       {/* children is dynamically replaced by a page at runtime, where the user is in our app */}
     </html>
   )

@@ -10,14 +10,14 @@ import prisma from "@/prisma/client";
 
 //Side note: you can remove request but it will cause next.js to cache the page. 
 export async function GET(request: NextRequest) {
-    //fetch users from a db (in future lesson)
     // prisma.user.findMany({
     //     //optional - provide an object to filter
     //     where: {
     //         email: ''
     //     }
     // })
-    //returns a promise
+
+    //returns a promise so must await and async
     const users = await prisma.user.findMany();
 
     // NextResponse.json() takes in an object (or an array of objects) and returns a response with the object as JSON
@@ -40,11 +40,32 @@ export async function POST(request: NextRequest) {
             validation.error.errors, {status: 400}
         )
     };
+    //we will get a 500 error if we try to create a user with the same email as an existing user
+    // so, we should handle this 
+    const existingUser = await prisma.user.findUnique({
+        where: {
+            email: body.email
+        }
+    })
+
+    // 400 is more appropriate than 500 for a user already exists error
+    if (existingUser) {
+        return NextResponse.json(
+            {error: 'User with that email already exists'}, {status: 400}
+        )
+    }
+
+    const newUser = await prisma.user.create({
+        data: {
+            //we don't want to set data to accept the entire body, because malicious users could send data that we don't want to accept. Instead, explicitly set the properties we want to accept
+            name: body.name,
+            email: body.email
+            // other properties not required because we gave them default values
+        }
+    })
+
     return NextResponse.json(
-        {
-            id: 1, 
-            name: body.name
-        }, 
+        newUser, 
             {status: 201});
     //201 is a more common status code for object creation than 200
 }
