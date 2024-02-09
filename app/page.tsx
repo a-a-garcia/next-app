@@ -6,7 +6,8 @@ import nonsense from '@/public/images/nonsense-christmas.jpg'
 import Link from 'next/link'
 import ProductCard from './components/ProductCard/ProductCard'
 import { getServerSession } from 'next-auth'
-import { authOptions } from './api/auth/[...nextauth]/route'
+// import below commented out as there was an error at local build time
+// import { authOptions } from './api/auth/[...nextauth]/route'
 import { useState } from 'react';
 // `_` is a common convention for lodash
 // commented out to lazy load lodash

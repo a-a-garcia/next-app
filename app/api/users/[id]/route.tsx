@@ -18,7 +18,7 @@ export async function GET(
         const user = await prisma.user.findUnique({
             where: {
                 //parse the params.id to a number
-                id: parseInt(params.id)
+                id: params.id
             }
         })
         //if not found, return 404
@@ -55,7 +55,7 @@ export async function PUT(
         //check if user exists
         const user = await prisma.user.findUnique({
             where: {
-                id: parseInt(params.id)
+                id: params.id
             }
         })
 
@@ -89,7 +89,8 @@ export async function DELETE(
         //Fetch user from db
         const userToDelete = await prisma.user.findUnique({
             where: { 
-                id: parseInt(params.id)
+                // parseInt removed because nextAuth documentation defines id as a string. in our own implementation we had id as a number
+                id: params.id
             }
         })
         // if not found, return 404
