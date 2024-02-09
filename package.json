@@ -23,6 +23,7 @@
     "eslint": "8.56.0",
     "eslint-config-next": "14.1.0",
     "fast-sort": "^3.4.0",
+    "lodash": "^4.17.21",
     "next": "14.1.0",
     "next-auth": "^4.24.5",
     "next-cloudinary": "^5.20.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/lodash": "^4.14.202",
     "daisyui": "^4.6.0"
   }
 }

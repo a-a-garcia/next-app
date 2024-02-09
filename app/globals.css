@@ -28,6 +28,6 @@ body {
 @layer base {
   /* all h1 elements will now have these styles */
   h1 {
-    @apply font-extrabold text-2xl mb-3
+    @apply font-extrabold text-2xl mb-3 font-poppins;
   }
 }

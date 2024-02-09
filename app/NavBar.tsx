@@ -11,7 +11,7 @@ const NavBar = () => {
   // status can be one of 3 things: loading, authenticated, or unauthenticated
   return (
     <div className='flex bg-slate-200 text-black p-5 space-x-3'>
-        <Link className='mr-5' href="/">Next.js</Link>
+        <Link className='mr-5 font-poppins' href="/">Next.js</Link>
         <Link href="/users">Users</Link>
         { status === 'loading' && <div>Loading...</div>}
         {/* use a `!` here to clear error "user is possibly undefined"*/}
