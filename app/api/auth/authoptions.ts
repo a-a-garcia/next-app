@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import GitHubProvider from "next-auth/providers/github";
 import prisma from "@/prisma/client";
 import bcrypt from "bcrypt";
 
@@ -44,6 +45,11 @@ export const authOptions: NextAuthOptions = {
             // you'll get an error here unless you put a '!' at the end of these variables because clientId and clientSecret expect strings, but process.env variables could be undefined. in most cases though, we know that these variables will be defined, so we can use the '!' to tell typescript to ignore the undefined possibility
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+        }),
+
+        GitHubProvider({
+            clientId: process.env.GITHUB_CLIENT_ID!,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET!
         })
     ],
 

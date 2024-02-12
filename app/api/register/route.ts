@@ -6,6 +6,8 @@ import prisma from "@/prisma/client";
 //bcrypt to hash their password if the pass above
 import bcrypt from "bcrypt";
 
+
+
 //create a schema by calling z.object
 //define the rules you want to enforce for the input
 const schema = z.object({
@@ -49,4 +51,23 @@ export async function POST(request: NextRequest) {
 
     //return a basic response to the client
     return NextResponse.json({ email: newUser.email})
+}
+
+export async function PUT(request: NextRequest) {
+    const body = await request.json();
+
+    const validation = schema.safeParse(body);
+
+    if (!validation.success) {
+        return NextResponse.json(validation.error.errors, { status: 400 })
+    }
+
+    const newHashedPassword = await bcrypt.hash(body.password, 10)
+
+    const userWithNewPw = await prisma.user.update({
+        where: { email: body.email },
+        data: { hashedPassword: newHashedPassword}
+    });
+
+    return NextResponse.json({ email: userWithNewPw.email})
 }
