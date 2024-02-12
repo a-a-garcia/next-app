@@ -12,6 +12,7 @@ export const config = {
     // +: one or more parameters
     // ?: zero or one parameters
     matcher: ['/users/:id*',
+    '/update',
     // in a real app... something like
     '/dashboard/:path*'] //will protect all routes that start with /dashboard
 }
